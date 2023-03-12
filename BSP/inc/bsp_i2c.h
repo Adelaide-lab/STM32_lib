@@ -1,13 +1,22 @@
+/**
+ * @file bsp_i2c.h
+ * @author Adelaide (1479398604xz@gmail.com)
+ * @brief 
+ * @version 0.1
+ * @date 2023-03-12
+ * 
+ * @copyright Copyright (c) github:Adelai-lab 2023
+ * 
+ */
 #ifndef  __BSP_I2C__
 #define  __BSP_I2C__
+
 #include "stm32f10x.h"
 #include "stm32f10x_i2c.h"
 
 #define I2C_EVENT(str,timeout) {#str,\
     I2C_EVENT_##str,\
-    timeout
-}
-
+    timeout}
 typedef struct{
     char *     evt_str;
     uint32_t   evt;

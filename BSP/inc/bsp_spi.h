@@ -1,31 +1,22 @@
 #ifndef __BSP_SPI_H__
 #define __BSP_SPI_H__	
 #include "stm32f10x.h"
+#include "stm32f10x_spi.h"
 #include <stdio.h>
 
-typedef enum {
-	WRITE_STATUS_REG = 0x01,
-	PAGE_PROGRAM        = 0x02,
-	WRITE_DISABLE         = 0x04,
-	READ_STATUS_REG1 = 0x05,
-	WRITE_ENABLE					 = 0x06,
-	SECTOR_ERASE         = 0x20,
-#if defined(USE_OF_32K)
-	BLOCK_ERASE           = 0x52,
-#else
-	BLOCK_ERASE           = 0xD8,
-#endif
-	READ_JEDEC_ID				 = 0x9F,
-	DUMMY_BYTE		 			   = 0xFF,
-}W25Q64_CMD;
+#define SPI_EVENT(str,timeout) {#str,\
+    SPI_##str,\
+    timeout}
 
-typedef enum{
-	BYTE_WRITE_ERROR = 0x01,
-	PAGE_WRITE_ERROR = 0x02,
-	READ_ERROR   = 0x03,
-	WAIT_TIMEOUT = 0x04,
-	FLASH_ERROR = 0x05,
-}SPI_ERROR;
+typedef struct{
+    char *     evt_str;
+    uint16_t   evt;
+    uint16_t   evt_wait_timeout;
+}spi_evt_struct;
+
+#define SPI_FAST_FLAG_TIMEOUT 0x100
+#define SPI_LONG_FLAG_TIMEOUT 0x1000
+
 #define MAX_PAGE_WRITE_SIZE 256
 #define  BUSY_BIT    0x1
 #define  WEL_BIT     0x2
@@ -64,7 +55,7 @@ void SPI_GPIO_Init(void);
 void SPI_Cofig_Init(void);
 uint8_t SPI_SEND_DATA_Byte(uint8_t);
 uint8_t SPI_FLASH_Read_Byte(void);
-uint32_t SPI_Read_ID(void);
+
 void SPI_WIRTE_ENABLE(void);
 void SPI_WRITE_DIASBLE(void);
 void SPI_FLASH_WAIT_OPERATION(void);

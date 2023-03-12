@@ -1,44 +1,48 @@
 #include "bsp_spi.h"
 
-static __IO uint32_t  SPITimeout = SPI_FAST_FLAG_TIMEOUT;
-
-static  uint32_t SPI_TIMEOUT_UserCallback(uint8_t errorCode)
+static spi_evt_struct SPI_Event_Info[6] = 
 {
-  /* Block communication and all processes */
-  printf("\r\nSPI Wait Timeout.errorCode = %d\r\n",errorCode);
-  
-  return 0;
+	SPI_EVENT(I2S_FLAG_RXNE,\
+				SPI_FAST_FLAG_TIMEOUT),
+	SPI_EVENT(I2S_FLAG_TXE,\
+				SPI_FAST_FLAG_TIMEOUT),
+	SPI_EVENT(I2S_FLAG_BSY,\
+				SPI_FAST_FLAG_TIMEOUT),
+	SPI_EVENT(I2S_FLAG_OVR,\
+				SPI_FAST_FLAG_TIMEOUT),
+	SPI_EVENT(FLAG_MODF,\
+				SPI_FAST_FLAG_TIMEOUT),
+	SPI_EVENT(FLAG_CRCERR,\
+				SPI_FAST_FLAG_TIMEOUT),
 }
 
 void SPI_GPIO_Init(void)
 {
+	GPIO_InitTypeDef GPIO_InitStruture;
+	FLASH_GPIO_APBxClock_FUN(FLASH_SPI_GPIO_CLK,ENABLE);
+	FLASH_SPI_APBxClock_FUN(FLASH_SPI_CLK,ENABLE);
 
-	  GPIO_InitTypeDef GPIO_InitStruture;
-	  FLASH_GPIO_APBxClock_FUN(FLASH_SPI_GPIO_CLK,ENABLE);
-		FLASH_SPI_APBxClock_FUN(FLASH_SPI_CLK,ENABLE);
-	
-	  GPIO_InitStruture.GPIO_Pin         =   FLASH_SPI_MISO_PIN;
-	  GPIO_InitStruture.GPIO_Mode      =   GPIO_Mode_IN_FLOATING;
-	  GPIO_InitStruture.GPIO_Speed    =   GPIO_Speed_50MHz;
-	  GPIO_Init(FLASH_SPI_MISO_PORT,&GPIO_InitStruture);
-	
-	  GPIO_InitStruture.GPIO_Pin         =   FLASH_SPI_MOSI_PIN;
-	  GPIO_InitStruture.GPIO_Mode      =   GPIO_Mode_AF_PP;
-	  GPIO_InitStruture.GPIO_Speed    =   GPIO_Speed_50MHz;
-	  GPIO_Init(FLASH_SPI_MOSI_PORT,&GPIO_InitStruture);
-	
-	  GPIO_InitStruture.GPIO_Pin         =   FLASH_SPI_CLK_PIN;
-	  GPIO_InitStruture.GPIO_Mode      =   GPIO_Mode_AF_PP;
-	  GPIO_InitStruture.GPIO_Speed    =   GPIO_Speed_50MHz;
-	  GPIO_Init(FLASH_SPI_CLK_PORT,&GPIO_InitStruture);
-	
-	   /*chip select*/
-	  GPIO_InitStruture.GPIO_Pin         =   FLASH_SPI_CS_PIN;
-	  GPIO_InitStruture.GPIO_Mode      =   GPIO_Mode_Out_PP;
-	  GPIO_InitStruture.GPIO_Speed    =   GPIO_Speed_50MHz;
-	  GPIO_Init(FLASH_SPI_CS_PORT,&GPIO_InitStruture);
+	GPIO_InitStruture.GPIO_Pin         =   FLASH_SPI_MISO_PIN;
+	GPIO_InitStruture.GPIO_Mode      =   GPIO_Mode_IN_FLOATING;
+	GPIO_InitStruture.GPIO_Speed    =   GPIO_Speed_50MHz;
+	GPIO_Init(FLASH_SPI_MISO_PORT,&GPIO_InitStruture);
 
-		/* set gpio for 3.3V*/
+	GPIO_InitStruture.GPIO_Pin         =   FLASH_SPI_MOSI_PIN;
+	GPIO_InitStruture.GPIO_Mode      =   GPIO_Mode_AF_PP;
+	GPIO_InitStruture.GPIO_Speed    =   GPIO_Speed_50MHz;
+	GPIO_Init(FLASH_SPI_MOSI_PORT,&GPIO_InitStruture);
+
+	GPIO_InitStruture.GPIO_Pin         =   FLASH_SPI_CLK_PIN;
+	GPIO_InitStruture.GPIO_Mode      =   GPIO_Mode_AF_PP;
+	GPIO_InitStruture.GPIO_Speed    =   GPIO_Speed_50MHz;
+	GPIO_Init(FLASH_SPI_CLK_PORT,&GPIO_InitStruture);
+
+	/*chip select*/
+	GPIO_InitStruture.GPIO_Pin         =   FLASH_SPI_CS_PIN;
+	GPIO_InitStruture.GPIO_Mode      =   GPIO_Mode_Out_PP;
+	GPIO_InitStruture.GPIO_Speed    =   GPIO_Speed_50MHz;
+	GPIO_Init(FLASH_SPI_CS_PORT,&GPIO_InitStruture);
+	/* set gpio for 3.3V*/
 	FLASH_SPI_CS_HIGH;
 }
 
@@ -87,21 +91,7 @@ uint8_t SPI_FLASH_Read_Byte(void)
 
 uint32_t SPI_Read_ID(void)
 {
-	uint32_t flash_id = 0;
-	
-	FLASH_SPI_CS_LOW;
-	SPI_SEND_DATA_Byte(READ_JEDEC_ID);
-	
-	flash_id = SPI_SEND_DATA_Byte(DUMMY_BYTE);
-	flash_id <<= 8;
-	
-	flash_id |= SPI_SEND_DATA_Byte(DUMMY_BYTE); 
-	flash_id <<= 8;
-	
-	flash_id |= SPI_SEND_DATA_Byte(DUMMY_BYTE); 
-	FLASH_SPI_CS_HIGH;	
-	
-	return flash_id;
+
 }
 
 void SPI_WIRTE_ENABLE(void)

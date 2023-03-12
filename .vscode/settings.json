@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "led.h": "c"
+        "led.h": "c",
+        "oled.h": "c",
+        "bsp_spi.h": "c"
     }
 }

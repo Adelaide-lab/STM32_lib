@@ -7,9 +7,6 @@
 
 
 void led_init(void);
-void led_off(uint32_t color);
-void led_on(uint32_t color);
-void led_toggle(uint32_t color);
-void led_blink(uint32_t time,uint32_t color);
+
 
 #endif 

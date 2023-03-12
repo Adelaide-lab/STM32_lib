@@ -164,7 +164,7 @@ uint8_t I2C_Receive_DataByte(void)
 
 uint8_t I2C_Send_DataBytes(uint8_t *s_buf, uint8_t num_bytes)
 {
-    while ((num_byte--) && (I2C_Send_DataByte(*s_buf)))
+    while ((num_bytes--) && (I2C_Send_DataByte(*s_buf)))
     {
         s_buf++;
     }

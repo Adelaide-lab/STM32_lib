@@ -11,7 +11,6 @@ void sysdelay_micro_secs(uint32_t delay_times);
 void sysdelay_mil_secs(uint32_t delay_times);
 
 void sysdelay_secs(uint32_t delay_times);
-
 	
 #endif
 
