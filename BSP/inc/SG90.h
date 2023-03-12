@@ -1,13 +1,13 @@
 #ifndef  __SG90_H__
-#define __SG90_H__
+#define  __SG90_H__
 #include "stm32f10x.h"
 
-/*ÒªÊ¹ÓÃÊ²Ã´ÑÕÉ«µÄºôÎüµÆ£¬¿ÉÑ¡RED_LIGHT¡¢GREEN_LIGHT¡¢BLUE_LIGHT*/
+/*ÒªÊ¹ï¿½ï¿½Ê²Ã´ï¿½ï¿½É«ï¿½Äºï¿½ï¿½ï¿½ï¿½Æ£ï¿½ï¿½ï¿½Ñ¡RED_LIGHTï¿½ï¿½GREEN_LIGHTï¿½ï¿½BLUE_LIGHT*/
 #define LIGHT_COLOR 	RED_LIGHT
 
-/********************¶¨Ê±Æ÷Í¨µÀ**************************/
+/********************ï¿½ï¿½Ê±ï¿½ï¿½Í¨ï¿½ï¿½**************************/
 #if  LIGHT_COLOR == RED_LIGHT
-/************ºìµÆ***************/
+/************ï¿½ï¿½ï¿½***************/
 	#define   BRE_TIMx                      TIM3
 
 	#define   BRE_TIM_APBxClock_FUN        RCC_APB1PeriphClockCmd
@@ -15,21 +15,21 @@
 	#define   BRE_TIM_GPIO_APBxClock_FUN   RCC_APB2PeriphClockCmd
 	#define   BRE_TIM_GPIO_CLK              (RCC_APB2Periph_GPIOB|RCC_APB2Periph_AFIO)
 
-	//ºìµÆµÄÒý½ÅÐèÒªÖØÓ³Éä
+	//ï¿½ï¿½Æµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½Ó³ï¿½ï¿½
 	#define   BRE_GPIO_REMAP_FUN()						GPIO_PinRemapConfig(GPIO_PartialRemap_TIM3, ENABLE); 				
 
 	#define  BRE_TIM_LED_PORT               GPIOB
 	#define  BRE_TIM_LED_PIN                GPIO_Pin_5
 
-	#define  BRE_TIM_OCxInit                TIM_OC2Init            //Í¨µÀÑ¡Ôñ£¬1~4
+	#define  BRE_TIM_OCxInit                TIM_OC2Init            //Í¨ï¿½ï¿½Ñ¡ï¿½ï¿½1~4
 	#define  BRE_TIM_OCxPreloadConfig       TIM_OC2PreloadConfig 
 	#define  BRE_CCRx                       CCR2
 
-	#define   BRE_TIMx_IRQn                TIM3_IRQn              //ÖÐ¶Ï
+	#define   BRE_TIMx_IRQn                TIM3_IRQn              //ï¿½Ð¶ï¿½
 	#define   BRE_TIMx_IRQHandler          TIM3_IRQHandler
 
 #elif LIGHT_COLOR == GREEN_LIGHT
-/************ÂÌµÆ***************/
+/************ï¿½Ìµï¿½***************/
 	#define   BRE_TIMx                      TIM3
 
 	#define   BRE_TIM_APBxClock_FUN        RCC_APB1PeriphClockCmd
@@ -37,22 +37,22 @@
 	#define   BRE_TIM_GPIO_APBxClock_FUN   RCC_APB2PeriphClockCmd
 	#define   BRE_TIM_GPIO_CLK              (RCC_APB2Periph_GPIOB)
 
-	//ÂÌµÆ²»ÐèÒªÖØÓ³Éä
+	//ï¿½ÌµÆ²ï¿½ï¿½ï¿½Òªï¿½ï¿½Ó³ï¿½ï¿½
 	#define   BRE_GPIO_REMAP_FUN()				
 
 
 	#define  BRE_TIM_LED_PORT               GPIOB
 	#define  BRE_TIM_LED_PIN                GPIO_Pin_0
 
-	#define  BRE_TIM_OCxInit                TIM_OC3Init            //Í¨µÀÑ¡Ôñ£¬1~4
+	#define  BRE_TIM_OCxInit                TIM_OC3Init            //Í¨ï¿½ï¿½Ñ¡ï¿½ï¿½1~4
 	#define  BRE_TIM_OCxPreloadConfig       TIM_OC3PreloadConfig 
 	#define  BRE_CCRx                       CCR3
 
-	#define   BRE_TIMx_IRQn                TIM3_IRQn              //ÖÐ¶Ï
+	#define   BRE_TIMx_IRQn                TIM3_IRQn              //ï¿½Ð¶ï¿½
 	#define   BRE_TIMx_IRQHandler          TIM3_IRQHandler
 
 #elif LIGHT_COLOR == BLUE_LIGHT
-/************À¶µÆ***************/
+/************ï¿½ï¿½ï¿½ï¿½***************/
 	#define   BRE_TIMx                      TIM3
 
 	#define   BRE_TIM_APBxClock_FUN        RCC_APB1PeriphClockCmd
@@ -60,17 +60,17 @@
 	#define   BRE_TIM_GPIO_APBxClock_FUN   RCC_APB2PeriphClockCmd
 	#define   BRE_TIM_GPIO_CLK              (RCC_APB2Periph_GPIOB)
 
-	//À¶µÆ²»ÐèÒªÖØÓ³Éä
+	//ï¿½ï¿½ï¿½Æ²ï¿½ï¿½ï¿½Òªï¿½ï¿½Ó³ï¿½ï¿½
 	#define   BRE_GPIO_REMAP_FUN()	
 
 	#define   BRE_TIM_LED_PORT             GPIOB
 	#define   BRE_TIM_LED_PIN              GPIO_Pin_1
 
-	#define   BRE_TIM_OCxInit              TIM_OC4Init            //Í¨µÀÑ¡Ôñ£¬1~4
+	#define   BRE_TIM_OCxInit              TIM_OC4Init            //Í¨ï¿½ï¿½Ñ¡ï¿½ï¿½1~4
 	#define   BRE_TIM_OCxPreloadConfig    TIM_OC4PreloadConfig 
 	#define   BRE_CCRx                      CCR4
 
-	#define   BRE_TIMx_IRQn                TIM3_IRQn              //ÖÐ¶Ï
+	#define   BRE_TIMx_IRQn                TIM3_IRQn              //ï¿½Ð¶ï¿½
 	#define   BRE_TIMx_IRQHandler          TIM3_IRQHandler
 	
 

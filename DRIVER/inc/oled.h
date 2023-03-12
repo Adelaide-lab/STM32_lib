@@ -152,4 +152,35 @@ void OLED_DisplayTurn(u8 i);
  */
 void OLED_DisPlay_On(void);
 
+/**
+ * @brief 
+ * 
+ * @param u8x8 
+ * @param msg 
+ * @param arg_int 
+ * @param arg_ptr 
+ * @return uint8_t 
+ * @version 0.1
+ * @author Adelaide ({1479398604xz@gmail.com})
+ * @date 2023-03-12
+ * @copyright Copyright (c) 2023
+ */
+uint8_t u8x8_gpio_and_delay_hw(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr);
+
+
+/**
+ * @brief 
+ * 
+ * @param u8x8 
+ * @param msg 
+ * @param arg_int 
+ * @param arg_ptr 
+ * @return uint8_t 
+ * @version 0.1
+ * @author Adelaide ({1479398604xz@gmail.com})
+ * @date 2023-03-12
+ * @copyright Copyright (c) 2023
+ */
+uint8_t u8x8_byte_hw_i2c(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr);
+
 #endif

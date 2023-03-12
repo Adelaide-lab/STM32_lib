@@ -1,44 +1,167 @@
 #ifndef  __BSP_I2C__
-#define __BSP_I2C__
+#define  __BSP_I2C__
 #include "stm32f10x.h"
+#include "stm32f10x_i2c.h"
 
-#define I2C_FAST_FLAG_TIMEOUT				0x1000
+#define I2C_EVENT(str,timeout) {#str,\
+    I2C_EVENT_##str,\
+    timeout
+}
 
-// IIC
-#define  EEPROM_I2C                   							I2C1
-#define  EEPROM_I2C_CLK               			RCC_APB1Periph_I2C1
-#define  EEPROM_I2C_APBxClkCmd       RCC_APB1PeriphClockCmd
-#define  EEPROM_I2_BAUDRATE           400000
+typedef struct{
+    char *     evt_str;
+    uint32_t   evt;
+    uint16_t   evt_wait_timeout;
+}i2c_evt_struct;
 
-//IIC GPIO Òý½Åºê¶¨Òå
-#define  EEPROM_I2C_SCL_GPIO_CLK           (RCC_APB2Periph_GPIOB)
-#define  EEPROM_I2C_SDA_GPIO_CLK           (RCC_APB2Periph_GPIOB)
+#define I2C_FAST_FLAG_TIMEOUT 0x100
+#define I2C_LONG_FLAG_TIMEOUT 0x1000
 
-#define  EEPROM_I2C_GPIO_APBxClkCmd    RCC_APB2PeriphClockCmd
+
+#define  I2C                  I2C1
+#define  I2C_CLK              RCC_APB1Periph_I2C1
+#define  I2C_APBxClkCmd       RCC_APB1PeriphClockCmd
+#define  I2C_BAUDRATE          400000
+
+
+#define  I2C_SCL_GPIO_CLK       (RCC_APB2Periph_GPIOB)
+#define  I2C_SDA_GPIO_CLK       (RCC_APB2Periph_GPIOB)
+
+#define  I2C_GPIO_APBxClkCmd    RCC_APB2PeriphClockCmd
     
-#define  EEPROM_I2C_SCL_GPIO_PORT         GPIOB  
-#define  EEPROM_I2C_SCL_GPIO_PIN          GPIO_Pin_6
+#define  I2C_SCL_GPIO_PORT       GPIOB  
+#define  I2C_SCL_GPIO_PIN        GPIO_Pin_6
 
-#define  EEPROM_I2C_SDA_GPIO_PORT       GPIOB
-#define  EEPROM_I2C_SDA_GPIO_PIN        GPIO_Pin_7
+#define  I2C_SDA_GPIO_PORT       GPIOB
+#define  I2C_SDA_GPIO_PIN        GPIO_Pin_7
 
 
 
-void OLED_I2C_Init(void);
-//void OLED_Init(void);
-//uint8_t OLED_Write(uint8_t data, uint8_t mode);
-//void OLED_Read(uint8_t data);
-//void OLED_Clear_Screen(void);
-//void OLED_DrawPoint(uint8_t x,uint8_t y,uint8_t t);
-//void OLED_ShowChar(uint8_t x,uint8_t y,uint8_t chr,uint8_t size1,uint8_t mode);
-//void OLED_ShowString(uint8_t x,uint8_t y,uint8_t *chr,uint8_t size1,uint8_t mode);
-//uint8_t OLED_Refresh(void);
-//void OLED_Show(uint8_t *p_buff);
-//void OLED_ColorTurn(u8 i);
-//void OLED_DisplayTurn(u8 i);
-//void OLED_DisPlay_On(void);
-uint8_t u8x8_gpio_and_delay_hw(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr);
-uint8_t u8x8_byte_hw_i2c(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr);
+/**
+ * @brief I2C Init Function
+ * 
+ * @version 0.1
+ * @author Adelaide ({1479398604xz@gmail.com})
+ * @date 2023-03-12
+ * @copyright Copyright (c) 2023
+ */
+void I2C_Init(void);
 
+/**
+ * @brief I2C Search Event
+ * 
+ * @param evt 
+ * @return uint8_t 
+ * @version 0.1
+ * @author Adelaide ({1479398604xz@gmail.com})
+ * @date 2023-03-12
+ * @copyright Copyright (c) 2023
+ */
+uint8_t I2C_Search_Event(uint32_t evt);
+
+/**
+ * @brief I2C wait data
+ * 
+ * @return uint8_t 
+ * @version 0.1
+ * @author Adelaide ({1479398604xz@gmail.com})
+ * @date 2023-03-12
+ * @copyright Copyright (c) 2023
+ */
+uint16_t I2C_Wait_Data(uint32_t evt);
+
+/**
+ * @brief Generate Start Signal
+ * 
+ * @return uint8_t 
+ * @version 0.1
+ * @author Adelaide ({1479398604xz@gmail.com})
+ * @date 2023-03-12
+ * @copyright Copyright (c) 2023
+ */
+uint8_t  I2C_Start_Generator(void);
+
+/**
+ * @brief Generate Stop Signal
+ *
+ * @version 0.1
+ * @author Adelaide ({1479398604xz@gmail.com})
+ * @date 2023-03-12
+ * @copyright Copyright (c) 2023
+ */
+void I2C_Stop_Generator(void);
+
+/**
+ * @brief Select Master As Transmitter
+ *
+ * @param slave_address
+ * @return uint8_t
+ * @version 0.1
+ * @author Adelaide ({1479398604xz@gmail.com})
+ * @date 2023-03-12
+ * @copyright Copyright (c) 2023
+ */
+uint8_t  I2C_Transmitter_Selected(uint8_t slave_address);
+
+/**
+ * @brief Select Master As Receiver
+ *
+ * @param slave_address
+ * @return uint8_t
+ * @version 0.1
+ * @author Adelaide ({1479398604xz@gmail.com})
+ * @date 2023-03-12
+ * @copyright Copyright (c) 2023
+ */
+uint8_t  I2C_Receiver_Selected(uint8_t slave_address);
+
+/**
+ * @brief I2C send one byte data 
+ * 
+ * @param send_data 
+ * @return uint8_t 
+ * @version 0.1
+ * @author Adelaide ({1479398604xz@gmail.com})
+ * @date 2023-03-12
+ * @copyright Copyright (c) 2023
+ */
+uint8_t  I2C_Send_DataByte(uint8_t send_data);
+
+/**
+ * @brief I2C receive one byte data
+ * 
+ * @return uint8_t 
+ * @version 0.1
+ * @author Adelaide ({1479398604xz@gmail.com})
+ * @date 2023-03-12
+ * @copyright Copyright (c) 2023
+ */
+uint8_t  I2C_Receive_DataByte(void);
+
+/**
+ * @brief I2C send data buffer
+ * 
+ * @param s_buf 
+ * @param num_bytes 
+ * @return uint8_t 
+ * @version 0.1
+ * @author Adelaide ({1479398604xz@gmail.com})
+ * @date 2023-03-12
+ * @copyright Copyright (c) 2023
+ */
+uint8_t  I2C_Send_DataBytes(uint8_t* s_buf, uint8_t num_bytes);
+
+/**
+ * @brief I2C receive data buffer
+ * 
+ * @param r_buf 
+ * @param num_bytes 
+ * @return uint8_t* 
+ * @version 0.1
+ * @author Adelaide ({1479398604xz@gmail.com})
+ * @date 2023-03-12
+ * @copyright Copyright (c) 2023
+ */
+uint8_t *I2C_Receive_DataBytes(uint8_t *r_buf, uint8_t num_bytes);
 
 #endif
