@@ -1,1 +1,13 @@
 
+[submodule "thirdparty/lvgl"]
+	path = thirdparty/lvgl
+	url = https://github.com/lvgl/lvgl.git
+[submodule "thirdparty/rtthread-manual-doc"]
+	path = thirdparty/rtthread-manual-doc
+	url = https://github.com/RT-Thread/rtthread-manual-doc.git
+[submodule "thirdparty/FreeRTOS"]
+	path = thirdparty/FreeRTOS
+	url = https://github.com/FreeRTOS/FreeRTOS.git
+[submodule "thirdparty/u8g2"]
+	path = thirdparty/u8g2
+	url = https://github.com/olikraus/u8g2.git
