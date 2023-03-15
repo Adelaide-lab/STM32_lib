@@ -3,5 +3,10 @@
         "led.h": "c",
         "oled.h": "c",
         "bsp_spi.h": "c"
-    }
+    },
+    "git.ignoreLimitWarning": true,
+    "editor.detectIndentation": false,
+    "editor.tabSize": 4,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true
 }
