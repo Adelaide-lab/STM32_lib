@@ -1,38 +1,39 @@
 /**
- * @file flash.h
+ * @file w25q64_spi.h
  * @author Adelaide (1479398604xz@gmail.com)
- * @brief 
+ * @brief
  * @version 0.1
- * @date 2023-03-12
- * 
+ * @date 2023-03-15
+ *
  * @copyright Copyright (c) github:Adelai-lab 2023
- * 
+ *
  */
-#ifndef __FLASH_H__
-#define __FLASH_H__
+#ifndef __W25Q64_H__
+#define __Q25Q64_H__
 #include "stm32f10x.h"
 
-enum w25q64_cmd{
-	WRITE_STATUS_REG    = 0x01,
-	PAGE_PROGRAM        = 0x02,
-	WRITE_DISABLE       = 0x04,
-	READ_STATUS_REG1    = 0x05,
-	WRITE_ENABLE		= 0x06,
-	SECTOR_ERASE        = 0x20,
+enum w25q64_cmd
+{
+    WRITE_STATUS_REG = 0x01,
+    PAGE_PROGRAM = 0x02,
+    WRITE_DISABLE = 0x04,
+    READ_STATUS_REG1 = 0x05,
+    WRITE_ENABLE = 0x06,
+    SECTOR_ERASE = 0x20,
 #if defined(USE_OF_32K)
-	BLOCK_ERASE         = 0x52,
+    BLOCK_ERASE = 0x52,
 #else
-	BLOCK_ERASE         = 0xD8,
+    BLOCK_ERASE = 0xD8,
 #endif
-	READ_JEDEC_ID		= 0x9F,
-	DUMMY_BYTE		 	= 0xFF,
+    READ_JEDEC_ID = 0x9F,
+    DUMMY_BYTE = 0xFF,
 };
 
 /**
  * @brief Init W25Q64 Flash
- * 
- * @return true 
- * @return false 
+ *
+ * @return true
+ * @return false
  * @version 0.1
  * @author Adelaide (1479398604xz@gmail.com)
  * @date 2023-03-12
@@ -42,8 +43,8 @@ bool W25Q64_Flash_Init(void);
 
 /**
  * @brief Read W25Q64 Info
- * 
- * @return uint32_t 
+ *
+ * @return uint32_t
  * @version 0.1
  * @author Adelaide (1479398604xz@gmail.com)
  * @date 2023-03-12
@@ -54,7 +55,7 @@ uint32_t W25Q64_Read_Info(void);
 
 /**
  * @brief Enable Write
- * 
+ *
  * @version 0.1
  * @author Adelaide (1479398604xz@gmail.com)
  * @date 2023-03-12
@@ -64,7 +65,7 @@ void W25Q64_Write_Enable(void);
 
 /**
  * @brief Disable Write
- * 
+ *
  * @version 0.1
  * @author Adelaide (1479398604xz@gmail.com)
  * @date 2023-03-12

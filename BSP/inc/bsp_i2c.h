@@ -38,7 +38,7 @@
  * @date 2023-03-12
  * @copyright Copyright (c) 2023
  */
-void I2C_Init(void);
+void I2C_Bsp_Init(void);
 
 /**
  * @brief I2C Search Event
