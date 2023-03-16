@@ -44,7 +44,7 @@ void SPI_Bsp_Init(void);
  * @date 2023-03-16
  * @copyright Copyright (c) github:Adelai-lab 2023
  */
-void SPI_TransRecive_Start(void);
+void SPI_TransRecieve_Start(void);
 
 /**
  * @brief Stop SPI Transmission/Recieve

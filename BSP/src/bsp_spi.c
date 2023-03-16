@@ -70,6 +70,20 @@ void SPI_Config_Init(void)
     SPI_Cmd(FLASH_SPIx, ENABLE);
 }
 
+void SPI_TransRecieve_Start(void)
+{
+    GPIO_ResetBits(FLASH_SPI_CS_PORT, FLASH_SPI_CS_PIN);
+}
+
+void SPI_TransRecieve_STop(void)
+{
+    GPIO_SetBits(FLASH_SPI_CS_PORT, FLASH_SPI_CS_PIN);
+}
+
+uint8_t SPI_Send_DataByte(uint8_t send_data)
+{
+}
+
 uint8_t SPI_SEND_DATA_Byte(uint8_t data)
 {
     SPITimeout = BSP_FAST_FLAG_TIMEOUT;
