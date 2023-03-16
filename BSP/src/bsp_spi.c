@@ -110,10 +110,6 @@ uint8_t SPI_FLASH_Read_Byte(void)
     return SPI_SEND_DATA_Byte(DUMMY_BYTE);
 }
 
-uint32_t SPI_Read_ID(void)
-{
-}
-
 void SPI_WIRTE_ENABLE(void)
 {
     FLASH_SPI_CS_LOW;

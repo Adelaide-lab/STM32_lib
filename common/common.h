@@ -4,9 +4,7 @@
 
 #define BSP_EVENT(prestr, str, timeout) \
     {                                   \
-#str,                           \
-            prestr##_##str,             \
-            timeout                     \
+#str, prestr##_##str, timeout   \
     }
 typedef struct
 {

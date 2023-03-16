@@ -14,19 +14,30 @@
 
 enum w25q64_cmd
 {
+    DUMMY_WORD,
     WRITE_STATUS_REG = 0x01,
     PAGE_PROGRAM = 0x02,
     WRITE_DISABLE = 0x04,
     READ_STATUS_REG1 = 0x05,
     WRITE_ENABLE = 0x06,
     SECTOR_ERASE = 0x20,
+    READ_STATUS_REG2 = 0x35,
+    READ_UNIC_ID = 0x4B,
 #if defined(USE_OF_32K)
     BLOCK_ERASE = 0x52,
 #else
     BLOCK_ERASE = 0xD8,
 #endif
+    CHIP_ERASED1 = 0x60,
+    ERASE_SUSPEND = 0x75,
+    ERASE_RESUME = 0x7A,
+    MANU_FACTURE_ID = 0x90,
     READ_JEDEC_ID = 0x9F,
-    DUMMY_BYTE = 0xFF,
+    HIGH_PERF_MODE = 0xA3,
+    RELEASE_POW_DN = 0xAB,
+    PWR_DOWN = 0xB9,
+    CHIP_ERASED2 = 0xC7,
+    READ_MODE_RESET = 0xFF
 };
 
 /**
@@ -44,14 +55,15 @@ bool W25Q64_Flash_Init(void);
 /**
  * @brief Read W25Q64 Info
  *
- * @return uint32_t
+ * @param info
+ * @return true
+ * @return false
  * @version 0.1
  * @author Adelaide (1479398604xz@gmail.com)
- * @date 2023-03-12
+ * @date 2023-03-16
  * @copyright Copyright (c) github:Adelai-lab 2023
  */
-
-uint32_t W25Q64_Read_Info(void);
+bool W25Q64_Read_Info(uint32_t *info);
 
 /**
  * @brief Enable Write
@@ -73,4 +85,40 @@ void W25Q64_Write_Enable(void);
  */
 void W25Q64_Write_Disable(void);
 
+/**
+ * @brief Wait operation
+ *
+ * @return uint32_t
+ * @version 0.1
+ * @author Adelaide (1479398604xz@gmail.com)
+ * @date 2023-03-17
+ * @copyright Copyright (c) github:Adelai-lab 2023
+ */
+uint32_t W25Q64_Wait_Operation(void);
+
+/**
+ * @brief Erase Sector
+ *
+ * @param addr
+ * @return uint32_t
+ * @version 0.1
+ * @author Adelaide (1479398604xz@gmail.com)
+ * @date 2023-03-17
+ * @copyright Copyright (c) github:Adelai-lab 2023
+ */
+uint32_t W25Q64_Erase_Sector(uint32_t addr);
+
+/**
+ * @brief Write Page
+ *
+ * @param addr
+ * @param p_buff
+ * @param bytes_num
+ * @return uint32_t
+ * @version 0.1
+ * @author Adelaide (1479398604xz@gmail.com)
+ * @date 2023-03-17
+ * @copyright Copyright (c) github:Adelai-lab 2023
+ */
+uint32_t W25Q64_Page_Write(uint32_t addr, uint8_t *p_buff, uint32_t bytes_num);
 #endif

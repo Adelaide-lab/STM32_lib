@@ -5,37 +5,37 @@
 static bsp_evt_struct I2C_Event_Info[16] =
     {
         BSP_EVENT(I2C_EVENT, SLAVE_TRANSMITTER_ADDRESS_MATCHED,\ 
-                BSP_LONG_FLAG_TIMEOUT),
+            BSP_LONG_FLAG_TIMEOUT),
         BSP_EVENT(I2C_EVENT, SLAVE_RECEIVER_ADDRESS_MATCHED,\ 
-                BSP_LONG_FLAG_TIMEOUT),
+            BSP_LONG_FLAG_TIMEOUT),
         BSP_EVENT(I2C_EVENT, SLAVE_TRANSMITTER_SECONDADDRESS_MATCHED,\ 
-                BSP_LONG_FLAG_TIMEOUT),
+            BSP_LONG_FLAG_TIMEOUT),
         BSP_EVENT(I2C_EVENT, SLAVE_RECEIVER_SECONDADDRESS_MATCHED,\ 
-                BSP_LONG_FLAG_TIMEOUT),
+            BSP_LONG_FLAG_TIMEOUT),
         BSP_EVENT(I2C_EVENT, SLAVE_GENERALCALLADDRESS_MATCHED,\ 
-                BSP_LONG_FLAG_TIMEOUT),
+            BSP_LONG_FLAG_TIMEOUT),
         BSP_EVENT(I2C_EVENT, SLAVE_BYTE_RECEIVED,\ 
-                BSP_LONG_FLAG_TIMEOUT),
+            BSP_LONG_FLAG_TIMEOUT),
         BSP_EVENT(I2C_EVENT, SLAVE_BYTE_TRANSMITTED,\ 
-                BSP_LONG_FLAG_TIMEOUT),
+            BSP_LONG_FLAG_TIMEOUT),
         BSP_EVENT(I2C_EVENT, SLAVE_ACK_FAILURE,\ 
-                BSP_LONG_FLAG_TIMEOUT),
+            BSP_LONkG_FLAG_TIMEOUT),
         BSP_EVENT(I2C_EVENT, SLAVE_STOP_DETECTED,\ 
-                BSP_LONG_FLAG_TIMEOUT),
+            BSP_LONG_FLAG_TIMEOUT),
         BSP_EVENT(I2C_EVENT, MASTER_MODE_SELECT,\ 
-                BSP_LONG_FLAG_TIMEOUT),
+            BSP_LONG_FLAG_TIMEOUT),
         BSP_EVENT(I2C_EVENT, MASTER_TRANSMITTER_MODE_SELECTED,\ 
-                BSP_LONG_FLAG_TIMEOUT),
+            BSP_LONG_FLAG_TIMEOUT),
         BSP_EVENT(I2C_EVENT, MASTER_RECEIVER_MODE_SELECTED,\ 
-                BSP_LONG_FLAG_TIMEOUT),
+            BSP_LONG_FLAG_TIMEOUT),
         BSP_EVENT(I2C_EVENT, MASTER_BYTE_RECEIVED,\ 
-                BSP_LONG_FLAG_TIMEOUT),
+            BSP_LONG_FLAG_TIMEOUT),
         BSP_EVENT(I2C_EVENT, MASTER_BYTE_TRANSMITTING,\ 
-                BSP_LONG_FLAG_TIMEOUT),
+            BSP_LONG_FLAG_TIMEOUT),
         BSP_EVENT(I2C_EVENT, MASTER_BYTE_TRANSMITTED,\ 
-                BSP_LONG_FLAG_TIMEOUT),
+            BSP_LONG_FLAG_TIMEOUT),
         BSP_EVENT(I2C_EVENT, MASTER_MODE_ADDRESS10,\ 
-                BSP_LONG_FLAG_TIMEOUT),
+            BSP_LONG_FLAG_TIMEOUT),
 }
 
 void
@@ -69,7 +69,7 @@ I2C_Bsp_Init(void)
 
 uint8_t I2C_Search_Event(uint32_t evt)
 {
-    uint8_t evt_size = sizeof(I2C_Event_Info) / sizeof(i2c_evt_struct);
+    uint8_t evt_size = sizeof(I2C_Event_Info) / sizeof(bsp_evt_struct);
     uint8_t evt_num = 0;
     for (; evt_num < evt_size; evt_num++)
     {

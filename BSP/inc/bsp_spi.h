@@ -37,6 +37,30 @@
 void SPI_Bsp_Init(void);
 
 /**
+ * @brief Search SPI Event
+ *
+ * @param evt
+ * @return uint8_t
+ * @version 0.1
+ * @author Adelaide (1479398604xz@gmail.com)
+ * @date 2023-03-17
+ * @copyright Copyright (c) github:Adelai-lab 2023
+ */
+uint8_t SPI_Search_Event(uint32_t evt);
+
+/**
+ * @brief SPI wait event
+ *
+ * @param evt
+ * @return uint16_t
+ * @version 0.1
+ * @author Adelaide (1479398604xz@gmail.com)
+ * @date 2023-03-17
+ * @copyright Copyright (c) github:Adelai-lab 2023
+ */
+uint16_t SPI_Wait_Event(uint32_t evt);
+
+/**
  * @brief Start SPI Transmission/Recieve
  *
  * @version 0.1
