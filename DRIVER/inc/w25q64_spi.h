@@ -121,4 +121,65 @@ uint32_t W25Q64_Erase_Sector(uint32_t addr);
  * @copyright Copyright (c) github:Adelai-lab 2023
  */
 uint32_t W25Q64_Page_Write(uint32_t addr, uint8_t *p_buff, uint32_t bytes_num);
+
+/**
+ * @brief Erase the whole chip
+ *
+ * @return true
+ * @return false
+ * @version 0.1
+ * @author Adelaide (1479398604xz@gmail.com)
+ * @date 2023-03-17
+ * @copyright Copyright (c) github:Adelai-lab 2023
+ */
+bool W25Q64_Chip_Erase(void);
+
+/**
+ * @brief Suspend Erase Execution
+ *
+ * @return true
+ * @return false
+ * @version 0.1
+ * @author Adelaide (1479398604xz@gmail.com)
+ * @date 2023-03-17
+ * @copyright Copyright (c) github:Adelai-lab 2023
+ */
+bool W25Q64_Erase_Suspend(void);
+
+/**
+ * @brief Resume Erase Execution
+ *
+ * @return true
+ * @return false
+ * @version 0.1
+ * @author Adelaide (1479398604xz@gmail.com)
+ * @date 2023-03-17
+ * @copyright Copyright (c) github:Adelai-lab 2023
+ */
+bool W25Q64_Erase_Resume(void);
+
+/**
+ * @brief Power Down To Low Power Mode
+ *
+ * @return true
+ * @return false
+ * @version 0.1
+ * @author Adelaide (1479398604xz@gmail.com)
+ * @date 2023-03-17
+ * @copyright Copyright (c) github:Adelai-lab 2023
+ */
+bool W25Q64_Power_Down(void);
+
+/**
+ * @brief Resume Power Down
+ *
+ * @return true
+ * @return false
+ * @version 0.1
+ * @author Adelaide (1479398604xz@gmail.com)
+ * @date 2023-03-17
+ * @copyright Copyright (c) github:Adelai-lab 2023
+ */
+bool W25Q64_Release_Power_Down(void);
+
 #endif
