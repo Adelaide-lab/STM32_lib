@@ -94,7 +94,7 @@ void W25Q64_Write_Disable(void);
  * @date 2023-03-17
  * @copyright Copyright (c) github:Adelai-lab 2023
  */
-uint32_t W25Q64_Wait_Operation(void);
+bool W25Q64_Wait_Operation(void);
 
 /**
  * @brief Erase Sector
@@ -107,6 +107,20 @@ uint32_t W25Q64_Wait_Operation(void);
  * @copyright Copyright (c) github:Adelai-lab 2023
  */
 uint32_t W25Q64_Erase_Sector(uint32_t addr);
+
+/**
+ * @brief Read  Bytes Data
+ *
+ * @param addr
+ * @param r_buff
+ * @param bytes_num
+ * @return uint32_t
+ * @version 0.1
+ * @author Adelaide (1479398604xz@gmail.com)
+ * @date 2023-03-19
+ * @copyright Copyright (c) github:Adelai-lab 2023
+ */
+uint32_t W25Q64_Bytes_Read(uint32_t addr, uint8_t *r_buff, uint32_t bytes_num);
 
 /**
  * @brief Write Page
