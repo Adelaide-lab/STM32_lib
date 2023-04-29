@@ -64,3 +64,24 @@ Below is the config function for systick, the parameter tick is the value for re
     return (0);                                                  /* Function successful */
     }
 ```
+
+#### 3.How to use?
+It's certain when you want a precise timer after you are familiar with these concepts.Systick timer is commonly used in most RTOS as a system tick to schedule the thread or process, although it's not perfectly precise(push/pop operand will also consume time, but those time can be ignored).
+
+Here is an example for creating a delay timer:
+
+```C:
+    /* Assuming the clock source is process clock, which is 
+     * 72MHz, so if you want to delay in microsecond, the first step is to 
+     * set the STK_CTRL,and then set the value for STK_LOAD, in this case,
+     * you should set the STK_LOAD 72000.
+    */
+    void delay_ms(unit32_t ms)
+    {
+        SysTick_Config(72000);
+        for(uint32_t i = 0;i < ms;i++); /*__NOP operation*/
+        SysTick->CTRL &= ~ SysTick_CTRL_ENABLE_Msk;  /*Disable timer*/
+    }
+```
+
+It's easy then you get a delay timer in microsecond.

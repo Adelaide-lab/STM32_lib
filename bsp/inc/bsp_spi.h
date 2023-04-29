@@ -4,7 +4,7 @@
 #include "stm32f10x_spi.h"
 #include <stdio.h>
 
-#define FLASH_SPIx SPI1
+#define SPI SPI1
 #define FLASH_SPI_APBxClock_FUN RCC_APB2PeriphClockCmd
 #define FLASH_SPI_CLK RCC_APB2Periph_SPI1
 #define FLASH_GPIO_APBxClock_FUN RCC_APB2PeriphClockCmd
@@ -35,6 +35,16 @@
  * @copyright Copyright (c) github:Adelai-lab 2023
  */
 void SPI_Bsp_Init(void);
+
+/**
+ * @brief Config SPI Initialization Value
+ *
+ * @version 0.1
+ * @author Adelaide (1479398604xz@gmail.com)
+ * @date 2023-04-29
+ * @copyright Copyright (c) github:Adelai-lab 2023
+ */
+void SPI_Bsp_Config(void);
 
 /**
  * @brief Search SPI Event
@@ -101,7 +111,7 @@ uint8_t SPI_Send_DataByte(uint8_t send_data);
  * @date 2023-03-16
  * @copyright Copyright (c) github:Adelai-lab 2023
  */
-uint8_t SPI_Receive_DataByte(void);
+uint16_t SPI_Receive_DataByte(void);
 
 /**
  * @brief SPI send data buffer
